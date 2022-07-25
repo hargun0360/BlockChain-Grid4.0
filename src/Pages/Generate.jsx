@@ -1,7 +1,43 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
 import 'boxicons'
+import { generateWarranty } from '../Web3Client'
+import { useState } from 'react'
+
 const Generate = () => {
+
+    const [productId, setProductId] = useState('');
+    const [productName, setProductName] = useState('');
+    const [ownerAddress, setOwnerAddress] = useState('');
+    const [expiryDate, setExpiryDate] = useState('');
+
+
+    const handleProductNameChange = event => {
+      setProductName(event.target.value);
+      console.log(event.target.value);
+    };
+
+    const handleProductIdChange = event => {
+        setProductId(event.target.value);
+        console.log(event.target.value);
+      };
+    
+    const handleOwnerAddressChange = event => {
+        setOwnerAddress(event.target.value);  
+        console.log(event.target.value);
+      };    
+
+    const handleExpiryDateChange = event => {
+        setExpiryDate(event.target.value);  
+        console.log(event.target.value);
+      };
+
+
+    const generate = ()=>{
+        if(productId.length != 0 && productName.length !=0 && ownerAddress.length!=0 && expiryDate.length!=0)
+        generateWarranty(productId,productName,ownerAddress,expiryDate);
+    }
+
     return (
         <div className='gradient w-full h-screen md:h-full'>
             <Navbar />
@@ -15,26 +51,30 @@ const Generate = () => {
                     <form className='flex justify-center  items-center flex-col space-y-6'>
                         <div className='flex flex-col'>
                             <label className='text-[#CECCD1] font-Josefin font-light text-sm md:text-lg'>Product Name</label>
-                            <input type={"text"} className='rounded md:w-[220px] border border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' />
+                            <input type={"text"} className='rounded md:w-[220px] border border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' 
+                            onChange={handleProductNameChange}/>
                         </div>
                         <div className='flex flex-col'>
                             <label className='text-[#CECCD1] font-Josefin font-light text-sm md:text-lg'>Product Id</label>
-                            <input type={"text"} className='rounded border md:w-[220px] border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' />
+                            <input type={"text"} className='rounded border md:w-[220px] border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' 
+                            onChange={handleProductIdChange}/>
                         </div>
                         <div className='flex flex-col'>
                             <label className='text-[#CECCD1] font-Josefin font-light text-sm md:text-lg'>Customer Address</label>
-                            <input type={"text"} className='rounded border md:w-[220px] border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' />
+                            <input type={"text"} className='rounded border md:w-[220px] border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1'
+                            onChange={handleOwnerAddressChange} />
                         </div>
                         <div className='flex flex-col'>
                             <label className='text-[#CECCD1] font-Josefin font-light text-sm md:text-lg'>Expiry Date</label>
                             <div className='relative'>
-                                <input type={"date"} className='rounded border md:w-[220px] border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-7 pl-6' />
+                                <input type={"date"} className='rounded border md:w-[220px] border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-7 pl-6' 
+                                onChange={handleExpiryDateChange}/>
                                 <div className='absolute top-0 px-0'>
                                     <box-icon name='calendar' color="white" size="22px" ></box-icon>
                                 </div>
                             </div>
                         </div>
-                        <button type='submit' className='bg-[#6200EE] md:w-[220px] text-white rounded px-3 py-1'>GENERATE WARRANTY</button>
+                        <button type='submit' className='bg-[#6200EE] md:w-[220px] text-white rounded px-3 py-1' onClick={generate}>GENERATE WARRANTY</button>
                     </form>
                 </div>
             </div>
