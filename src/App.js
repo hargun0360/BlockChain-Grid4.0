@@ -4,6 +4,7 @@ import Generate from './Pages/Generate';
 import Warranty from './Pages/Warranty';
 import ClaimWarranty from './Pages/ClaimWarranty';
 import TransferWarranty from './Pages/TransferWarranty';
+import MyProducts from './Pages/MyProducts';
 function App() {
   return (
     <div className="App">
@@ -12,6 +13,7 @@ function App() {
         <Route path="/warranty" element={<Warranty />} />
         <Route path="/claim" element={<ClaimWarranty />} />
         <Route path="/transfer" element={<TransferWarranty />} />
+        <Route path="/products" element={<MyProducts />} />
       </Routes>
     </div>
   );
