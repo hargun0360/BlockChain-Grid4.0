@@ -2,6 +2,8 @@ import React from 'react'
 import NavbarAdmin from '../Components/NavbarAdmin'
 import 'boxicons'
 import { claimWarranty } from '../Web3Client'
+import { useState } from 'react'
+
 const ClaimWarranty = () => {
 
     const [productId, setProductId] = useState('');
@@ -11,7 +13,7 @@ const ClaimWarranty = () => {
         console.log(event.target.value);
       };
 
-      const generate = ()=>{
+      const claim = ()=>{
         if(productId.length != 0 )
         claimWarranty(productId);
     }
@@ -33,7 +35,7 @@ const ClaimWarranty = () => {
                             onChange={handleProductIdChange} />
                         </div>
                         <button type='submit' className='bg-[#6200EE] md:w-[220px] text-white rounded px-3 py-1 text-sm w-[195px] my-5'
-                        onClick={generate}>CLAIM WARRANTY</button>
+                        onClick={claim}>CLAIM WARRANTY</button>
                     </form>
                 </div>
             </div>

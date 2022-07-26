@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
+import { useState } from 'react'
 import 'boxicons'
 const Warranty = () => {
     return (

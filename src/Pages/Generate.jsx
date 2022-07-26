@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
-import 'boxicons'
+import 'boxicons';
 import { generateWarranty } from '../Web3Client'
 import { useState } from 'react'
 
@@ -28,8 +28,9 @@ const Generate = () => {
       };    
 
     const handleExpiryDateChange = event => {
-        setExpiryDate(event.target.value);  
-        console.log(event.target.value);
+        var date = new Date(event.target.value).getTime()/1000;
+        console.log(date);
+        setExpiryDate(date);
       };
 
 

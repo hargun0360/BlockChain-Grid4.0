@@ -1,6 +1,5 @@
-import Web3 from "web3";
+import Web3 from 'web3';
 import Flipkart from './build/contracts/Flipkart.json'
-
 
 let selectedAccount;
 let isInitialized = false
@@ -24,9 +23,10 @@ export const init = async () => {
       console.log("Selected account is changed to " + selectedAccount);
     });
   }
-  const web3 = new Web3(provider || 'http://localhost:8545');
+  
+  const web3 = new Web3(provider || 'http://localhost:7545');
 
-  const networkId = await web3.eth.net.getId();
+  const networkId = await web3.eth.net.getId()
 
   flipkartContract = new web3.eth.Contract(Flipkart.abi, Flipkart.networks[networkId].address);
 
@@ -43,11 +43,12 @@ export const generateWarranty = async ({productId,productName,ownerAddress,expir
 
 }
 
-export const getProductDetails = async({productId}) => {
+export const getProductDetails = async(props) => {
   if (!isInitialized) {
     await init()
   }
-  const response = await flipkartContract.methods.getProductDetails(productId).call
+
+  const response = await flipkartContract.methods.getProductDetails(props).call();
   if(response){
     return response
   }
@@ -75,11 +76,11 @@ export const transfer = async({productId, receiverAddress}) => {
 }
 
 
-export const getMyProducts = async({productId, receiverAddress}) => {
+export const getMyProducts = async() => {
   if (!isInitialized) {
     await init()
   }
-  const response = await flipkartContract.methods.getMyProducts().call
+  const response = await flipkartContract.methods.getMyProducts().call();
   if(response){
     return response
   }

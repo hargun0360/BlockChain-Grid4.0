@@ -1,7 +1,31 @@
 import React from 'react'
 import NavbarAdmin from '../Components/NavbarAdmin'
 import 'boxicons'
+import { transfer } from '../Web3Client'
+import { useState } from 'react'
+
 const TransferWarranty = () => {
+
+    const [productId, setProductId] = useState('');
+    const [receiverAddress, setReceiverAddress] = useState('');
+
+
+    const handleProductIdChange = event => {
+        setProductId(event.target.value);
+        console.log(event.target.value);
+      };
+    
+    const handleReceiverAddressChange = event => {
+        setReceiverAddress(event.target.value);
+        console.log(event.target.value);
+      };
+
+    const transferW = ()=>{
+        if(productId.length != 0 && receiverAddress.length!=0)
+        transfer(productId,receiverAddress)
+    }
+
+
     return (
         <div className='gradient w-full h-screen '>
             <NavbarAdmin />
@@ -15,13 +39,16 @@ const TransferWarranty = () => {
                     <form className='flex justify-center  items-center flex-col space-y-5 '>
                         <div className='flex flex-col'>
                             <label className='text-[#CECCD1] font-Josefin font-light text-sm md:text-lg'>Product ID</label>
-                            <input type={"text"} className='rounded md:w-[220px] border border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' />
+                            <input type={"text"} className='rounded md:w-[220px] border border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' 
+                            onChange={handleProductIdChange}/>
                         </div>
                         <div className='flex flex-col'>
                             <label className='text-[#CECCD1] font-Josefin font-light text-sm md:text-lg'>To Address</label>
-                            <input type={"text"} className='rounded md:w-[220px] border border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' />
+                            <input type={"text"} className='rounded md:w-[220px] border border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' 
+                            onChange={handleReceiverAddressChange}/>
                         </div>
-                        <button type='submit' className='bg-[#6200EE] md:w-[145px] text-white rounded px-3 py-1 text-sm w-[145px] my-7'>TRANSFER</button>
+                        <button type='submit' className='bg-[#6200EE] md:w-[145px] text-white rounded px-3 py-1 text-sm w-[145px] my-7'
+                        onClick={transferW}>TRANSFER</button>
                     </form>
                 </div>
             </div>
