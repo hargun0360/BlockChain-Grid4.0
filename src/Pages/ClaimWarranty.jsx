@@ -1,7 +1,23 @@
 import React from 'react'
 import NavbarAdmin from '../Components/NavbarAdmin'
 import 'boxicons'
+import { claimWarranty } from '../Web3Client'
+import { useState } from 'react'
+
 const ClaimWarranty = () => {
+
+    const [productId, setProductId] = useState('');
+
+    const handleProductIdChange = event => {
+        setProductId(event.target.value);
+        console.log(event.target.value);
+      };
+
+      const claim = ()=>{
+        if(productId.length != 0 )
+        claimWarranty(productId);
+    }
+
     return (
         <div className='gradient w-full h-screen '>
             <NavbarAdmin />
@@ -15,9 +31,11 @@ const ClaimWarranty = () => {
                     <form className='flex justify-center  items-center flex-col '>
                         <div className='flex flex-col'>
                             <label className='text-[#CECCD1] font-Josefin font-light text-sm md:text-lg'>Product ID</label>
-                            <input type={"text"} className='rounded md:w-[220px] border border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1' />
+                            <input type={"text"} className='rounded md:w-[220px] border border-[#CECCD1] bg-transparent text-[#B6B3BA] focus:outline-none px-1'
+                            onChange={handleProductIdChange} />
                         </div>
-                        <button type='submit' className='bg-[#6200EE] md:w-[220px] text-white rounded px-3 py-1 text-sm w-[195px] my-5'>CLAIM WARRANTY</button>
+                        <button type='submit' className='bg-[#6200EE] md:w-[220px] text-white rounded px-3 py-1 text-sm w-[195px] my-5'
+                        onClick={claim}>CLAIM WARRANTY</button>
                     </form>
                 </div>
             </div>
