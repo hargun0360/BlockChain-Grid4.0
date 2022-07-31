@@ -15,14 +15,14 @@ const ClaimWarranty = () => {
 
       const claim = ()=>{
         if(productId.length != 0 )
-        claimWarranty(productId);
+        claimWarranty({productId});
     }
 
     return (
         <div className='gradient w-full h-screen '>
             <NavbarAdmin />
             <div className='text-white font-bold font-Josefin text-xl my-7 text-center md:text-4xl lg:text-5xl'>
-                Blockchain-based automotive warranty <div className='w-full flex justify-center'>management</div>
+                Blockchain-based automated warranty <div className='w-full flex justify-center'>management</div>
                 <div className='text-[#CECCD1] font-normal font-Josefin text-xs md:text-sm lg:text-base text-center px-3 my-2'>From purchasing product to warranty support, trust can be achieved by transparently managing the records of every product purchase using blockchain technology. </div>
             </div>
             <div className='w-full flex justify-center items-center my-14 pb-5'>

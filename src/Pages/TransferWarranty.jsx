@@ -22,19 +22,19 @@ const TransferWarranty = () => {
 
     const transferW = ()=>{
         if(productId.length != 0 && receiverAddress.length!=0)
-        transfer(productId,receiverAddress)
+            transfer(productId,receiverAddress)
     }
 
 
     return (
-        <div className='gradient w-full h-screen '>
+        <div className='gradient w-full h-screen xl:h-screen '>
             <NavbarAdmin />
             <div className='text-white font-bold font-Josefin text-2xl my-7 text-center md:text-5xl lg:text-5xl'>
             Transfer warranty
                 <div className='text-[#CECCD1] font-normal font-Josefin text-xs md:text-base lg:text-base text-center px-3 my-2'>From purchasing product to warranty support, trust can be achieved by transparently managing the records of every product purchase using blockchain technology. </div>
             </div>
             <div className='w-full flex justify-center items-center my-14 pb-5'>
-                <div className='w-[310px] h-[240px] md:w-[380px] md:h-[280px] lg:h-[275px] border rounded border-[#CECCD1]'>
+                <div className='w-[310px] h-[240px] md:w-[380px] md:h-[280px] lg:h-[295px] border rounded border-[#CECCD1]'>
                     <div className='text-white font-bold font-Josefin text-xl md:text-3xl lg:pt-2 text-center pt-1 my-2 pb-2'>Enter product detail</div>
                     <form className='flex justify-center  items-center flex-col space-y-5 '>
                         <div className='flex flex-col'>

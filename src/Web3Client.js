@@ -24,7 +24,7 @@ export const init = async () => {
     });
   }
   
-  const web3 = new Web3(provider || 'http://localhost:7545');
+  const web3 = new Web3(provider);
 
   const networkId = await web3.eth.net.getId()
 
@@ -76,11 +76,11 @@ export const transfer = async({productId, receiverAddress}) => {
 }
 
 
-export const getMyProducts = async() => {
+export const getMyWarrenty = async() => {
   if (!isInitialized) {
     await init()
   }
-  const response = await flipkartContract.methods.getMyProducts().call();
+  const response = await flipkartContract.methods.getMyProducts(selectedAccount).call();
   if(response){
     return response
   }

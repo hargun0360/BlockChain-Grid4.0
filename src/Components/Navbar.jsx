@@ -1,7 +1,7 @@
 import React from 'react'
 import 'boxicons'
 import { useState } from 'react';
-import { getProductDetails } from '../Web3Client';
+import {getProductDetails } from '../Web3Client';
 
 const Navbar = () => {
 
@@ -14,8 +14,12 @@ const Navbar = () => {
 
       
     const getDetails = ()=>{
+        
+        getProductDetails(productId).then((res)=>{
+            console.log(res);
+        })
+
         if(productId.length != 0){
-            console.log(getProductDetails(productId))
         }
     }
 

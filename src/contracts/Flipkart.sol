@@ -32,8 +32,8 @@ contract Flipkart is ERC721 {
         return allProducts;
     }
 
-    function getMyProducts() public view returns (Product[] memory){
-        return productAddress[msg.sender];
+    function getMyProducts(address add) public view returns (Product[] memory){
+        return productAddress[add];
 
     }
 
@@ -56,17 +56,17 @@ contract Flipkart is ERC721 {
 
     }
 
-    function claim(string calldata _productId) public payable returns(bool){
+    function claim(string calldata _productId, address myAddress) public payable returns(bool){
 
         require(productExists[_productId], "Product do not exists");
         require(!productExpire[_productId],"Product is already expired");
 
         Product memory product = getProductDetails(_productId);
 
-        require(product.owner == msg.sender,"You do not own this product");
+        require(product.owner == myAddress,"You do not own this product");
 
                 _burn(product.tokenId);
-                delete productAddress[msg.sender];
+                delete productAddress[myAddress];
                 productExists[_productId] = false;
                 productExpire[_productId] = true;
                 delete productDetails[_productId];
@@ -99,19 +99,19 @@ contract Flipkart is ERC721 {
     }
 
 
-    function transferWarranty(string calldata _productId, address receiverAddress) public payable returns(bool){
+    function transferWarranty(string calldata _productId, address senderAddress,address receiverAddress) public payable returns(bool){
 
         require(productExists[_productId], "Product do not exists");
         require(!productExpire[_productId],"Product is already expired");
 
         Product memory product = getProductDetails(_productId);       
 
-        require(product.owner == msg.sender, "You do not own this product"); 
+        require(product.owner == senderAddress, "You do not own this product"); 
 
         if(product.expiryDate > block.timestamp){
     
             _transfer(msg.sender, receiverAddress, product.tokenId);
-            delete productAddress[msg.sender];
+            delete productAddress[senderAddress];
 
             Product memory newProduct = Product(product.tokenId,
                                             product.productId,
@@ -133,7 +133,7 @@ contract Flipkart is ERC721 {
         }
         else{
                 _burn(product.tokenId);
-                delete productAddress[msg.sender];
+                delete productAddress[senderAddress];
                 productExists[_productId] = false;
                 productExpire[_productId] = true;
                 delete productDetails[_productId];
